@@ -1,0 +1,499 @@
+{
+  "info": {
+    "_postman_id": "d65eca3f-c596-48b9-b3c2-396651bc7f69",
+    "name": "hotel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "18551379"
+  },
+  "item": [
+    {
+      "name": "costumer",
+      "item": [
+        {
+          "name": "create_costumer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"teste2@teste.com\",\r\n    \"name\": \"Teste\",\r\n    \"document\": \"123455673\",\r\n    \"phone\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/costumer",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "costumer"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_all_costumers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/costumer?is_active=true",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "costumer"
+              ],
+              "query": [
+                {
+                  "key": "is_active",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_costumer_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/costumer/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "costumer",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_costumer",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"teste@teste.com\",\r\n    \"name\": \"Teste 1\",\r\n    \"phone\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/costumer/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "costumer",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inactivate_costumer",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/costumer/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "costumer",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "land_lord",
+      "item": [
+        {
+          "name": "create_land_lord",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"teste@teste.com\",\r\n    \"name\": \"Teste\",\r\n    \"document\": \"12345645\",\r\n    \"type\": \"hotel\",\r\n    \"phone\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/landlord",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "landlord"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_all_land_lord",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/landlord",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "landlord"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_land_lord_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/landlord/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "landlord",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_land_lord",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"teste2@teste.com\",\r\n    \"name\": \"Teste 2\",\r\n    \"phone\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/landlord/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "landlord",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inactivate_land_lord",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/landlord/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "landlord",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "property",
+      "item": [
+        {
+          "name": "registry_property",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"land_lord_id\": 1,\r\n    \"name\": \"Teste\",\r\n    \"property_type\": \"room\",\r\n    \"address\": \"Teste\",\r\n    \"number\": \"123\",\r\n    \"neighborhood\": \"Teste Bairro\",\r\n    \"city\": \"Teste\",\r\n    \"state\": \"Teste\",\r\n    \"zip_code\": \"Teste\",\r\n    \"capacity\": 3,\r\n    \"daily_rate\": 31.90,\r\n    \"notes\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/property",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "property"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_all_property",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/property?is_active=true",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "property"
+              ],
+              "query": [
+                {
+                  "key": "is_active",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_property_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/property/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "property",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_property",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Teste 2\",\r\n    \"property_type\": \"room\",\r\n    \"address\": \"Teste 123\",\r\n    \"number\": \"123\",\r\n    \"neighborhood\": \"Teste Bairro\",\r\n    \"city\": \"Teste\",\r\n    \"state\": \"Teste\",\r\n    \"zip_code\": \"Teste\",\r\n    \"capacity\": 3,\r\n    \"daily_rate\": 32.00,\r\n    \"notes\": \"Teste\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/property/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "property",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inactivate_property",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/property/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "property",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "reservation",
+      "item": [
+        {
+          "name": "create_reservation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"costumer_id\": 1,\r\n    \"property_id\": 1,\r\n    \"check_in_date\": \"2026-10-11\",\r\n    \"check_out_date\": \"2026-10-20\",\r\n    \"number_of_costumers\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/reservation",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservation"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_reservation_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/reservation/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservation",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "find_all_reservation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/reservation",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservation"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancel_reservation",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/reservation/cancel/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservation",
+                "cancel",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "complete_reservation",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/reservation/complete/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservation",
+                "complete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
