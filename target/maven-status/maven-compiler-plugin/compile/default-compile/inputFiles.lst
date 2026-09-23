@@ -1,4 +1,7 @@
+D:\GitHub\restapi\src\main\java\com\example\restapi\config\OpenApiConfig.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\controller\costumer\CostumerController.java
+D:\GitHub\restapi\src\main\java\com\example\restapi\controller\docs\costumer\CostumerControllerDocs.java
+D:\GitHub\restapi\src\main\java\com\example\restapi\controller\docs\landLord\LandLordControllerDocs.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\controller\landLord\LandLordController.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\controller\property\PropertyController.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\controller\reservation\ReservationController.java

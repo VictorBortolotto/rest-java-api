@@ -7,6 +7,7 @@ com\example\restapi\domain\model\Property.class
 com\example\restapi\domain\exceptions\InsufficentValueExcpetion.class
 com\example\restapi\domain\dto\api\ErrorResponse.class
 com\example\restapi\domain\exceptions\NotFoundException.class
+com\example\restapi\config\OpenApiConfig.class
 com\example\restapi\service\reservation\CreateReservationService.class
 com\example\restapi\service\reservation\FindAllReservationService.class
 com\example\restapi\controller\property\PropertyController.class
@@ -33,6 +34,7 @@ com\example\restapi\domain\dto\landLord\UpdateRequestLandLordDto.class
 com\example\restapi\domain\dto\landLord\CreateRequestLandLordDto.class
 com\example\restapi\domain\model\Reservation.class
 com\example\restapi\controller\landLord\LandLordController.class
+com\example\restapi\controller\docs\landLord\LandLordControllerDocs.class
 com\example\restapi\service\landLord\CreateLandLordService.class
 com\example\restapi\domain\repository\LandLordRepository.class
 com\example\restapi\domain\exceptions\ConflictException.class
@@ -45,6 +47,7 @@ com\example\restapi\service\reservation\CancelReservationService.class
 com\example\restapi\domain\exceptions\InactivatedException.class
 com\example\restapi\domain\enums\PropertyType.class
 com\example\restapi\service\landLord\UpdateLandLordService.class
+com\example\restapi\controller\docs\costumer\CostumerControllerDocs.class
 com\example\restapi\domain\dto\property\RegistryPropertyDto.class
 com\example\restapi\service\costumer\InactiveteCostumerService.class
 com\example\restapi\service\property\FindAllPropertyService.class
