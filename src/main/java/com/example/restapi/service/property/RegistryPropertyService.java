@@ -18,7 +18,7 @@ public class RegistryPropertyService {
     private final PropertyRepository propertyRepository;
     private final FindLandLordByIdService findLandLordByIdService;
 
-    public Property registryProperty(RegistryPropertyDto registryPropertyDto) {
+    public Property registry(RegistryPropertyDto registryPropertyDto) {
         LandLord landLord = findLandLordByIdService.findById(registryPropertyDto.landLordId());
 
         if (!landLord.isActive()) {

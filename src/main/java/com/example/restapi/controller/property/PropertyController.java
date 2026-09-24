@@ -1,5 +1,6 @@
 package com.example.restapi.controller.property;
 
+import com.example.restapi.controller.docs.property.PropertyControllerDocs;
 import com.example.restapi.domain.dto.property.RegistryPropertyDto;
 import com.example.restapi.domain.dto.property.UpdatePropertyDto;
 import com.example.restapi.domain.model.Property;
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/property")
-public class PropertyController {
+public class PropertyController implements PropertyControllerDocs {
 
     private final RegistryPropertyService registryPropertyService;
     private final FindAllPropertyService findAllPropertyService;
@@ -21,33 +22,29 @@ public class PropertyController {
     private final InactivatePropertyService inactivatePropertyService;
     private final UpdatePropertyService updatePropertyService;
 
-    @PostMapping
-    public Property registry(@Valid  @RequestBody RegistryPropertyDto registryPropertyDto) {
-        return registryPropertyService.registryProperty(registryPropertyDto);
+    @Override
+    public Property registry(RegistryPropertyDto registryPropertyDto) {
+        return registryPropertyService.registry(registryPropertyDto);
     }
 
-    @GetMapping
-    public List<Property> findAll(
-            @RequestParam(required = false) Long id,
-            @RequestParam(name = "land_lord_id", required = false) Long landLordId,
-            @RequestParam(name = "avaliable", required = false) Boolean isAvaliable,
-            @RequestParam(name = "is_active", required = false) Boolean isActive
+    @Override
+    public List<Property> findAll(Long id,  Long landLordId, Boolean isAvaliable, Boolean isActive
     ) {
         return findAllPropertyService.findAll(id, landLordId, isAvaliable, isActive);
     }
 
-    @GetMapping(path = "/{id}")
-    public Property findById(@PathVariable("id") long id) {
+    @Override
+    public Property findById(long id) {
         return findPropertyByIdService.findById(id);
     }
 
-    @PatchMapping(path = "/{id}")
-    public void inactivate(@PathVariable("id") long id) {
+    @Override
+    public void inactivate(long id) {
         inactivatePropertyService.inactivate(id);
     }
 
-    @PutMapping(path = "/{id}")
-    public Property update(@PathVariable("id") long id, @Valid  @RequestBody UpdatePropertyDto updatePropertyDto) {
+    @Override
+    public Property update(long id, UpdatePropertyDto updatePropertyDto) {
         return updatePropertyService.update(id, updatePropertyDto);
     }
 }

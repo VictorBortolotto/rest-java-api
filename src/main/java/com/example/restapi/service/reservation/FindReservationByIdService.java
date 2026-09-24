@@ -13,6 +13,6 @@ public class FindReservationByIdService {
     private final ReservationRepository reservationRepository;
 
     public Reservation findById(long id) {
-        return reservationRepository.findById(id).orElseThrow(() -> new NotFoundException("Reservation not found"));
+        return reservationRepository.findById(id).orElseThrow(() -> new NotFoundException("Reservation not found."));
     }
 }

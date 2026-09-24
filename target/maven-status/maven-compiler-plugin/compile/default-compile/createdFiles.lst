@@ -4,6 +4,7 @@ com\example\restapi\domain\dto\reservation\CreateReservationDto.class
 com\example\restapi\domain\dto\costumer\CreateRequestCostumerDto.class
 com\example\restapi\domain\enums\ReservationStatus.class
 com\example\restapi\domain\model\Property.class
+com\example\restapi\controller\docs\property\PropertyControllerDocs.class
 com\example\restapi\domain\exceptions\InsufficentValueExcpetion.class
 com\example\restapi\domain\dto\api\ErrorResponse.class
 com\example\restapi\domain\exceptions\NotFoundException.class
@@ -37,6 +38,7 @@ com\example\restapi\controller\landLord\LandLordController.class
 com\example\restapi\controller\docs\landLord\LandLordControllerDocs.class
 com\example\restapi\service\landLord\CreateLandLordService.class
 com\example\restapi\domain\repository\LandLordRepository.class
+com\example\restapi\controller\docs\reservation\ReservationControllerDocs.class
 com\example\restapi\domain\exceptions\ConflictException.class
 com\example\restapi\domain\model\Costumer.class
 com\example\restapi\service\property\UpdatePropertyService.class
