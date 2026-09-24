@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,7 +64,7 @@ public interface CostumerControllerDocs {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Costumer create(
-            @RequestBody CreateRequestCostumerDto dto
+           @Valid @RequestBody CreateRequestCostumerDto dto
     );
 
     @Operation(
@@ -232,7 +233,7 @@ public interface CostumerControllerDocs {
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     Costumer update(
-            @PathVariable("id") long id, @RequestBody UpdateRequestCostumerDto updateRequestCostumerDto
+            @PathVariable("id") long id, @Valid @RequestBody UpdateRequestCostumerDto updateRequestCostumerDto
     );
 
     @Operation(

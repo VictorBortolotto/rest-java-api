@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "Hotel API",
+                title = "Rest Java API",
                 version = "1.0",
                 description = "API para gerenciamento de clientes, imóveis e reservas"
         )

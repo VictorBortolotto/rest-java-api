@@ -36,7 +36,7 @@ public class InactivateLandLordService {
     }
 
     private void inactivateAllActivePropertiesByLandLordId(long idLandLord) {
-        List<Property> properties = findAllPropertyService.findAll(null, idLandLord, null, null);
+        List<Property> properties = findAllPropertyService.findAll(null, idLandLord, null, true);
 
         if (properties.isEmpty()) {
             return;
@@ -45,10 +45,8 @@ public class InactivateLandLordService {
         List<Property> unactivatedProperties = new ArrayList<>();
 
         for (Property property : properties) {
-            if (property.isActive()) {
-                property.setActive(false);
-                unactivatedProperties.add(property);
-            }
+            property.setActive(false);
+            unactivatedProperties.add(property);
         }
 
         propertyRepository.saveAll(unactivatedProperties);

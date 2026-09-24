@@ -1,5 +1,6 @@
 package com.example.restapi.controller.reservation;
 
+import com.example.restapi.controller.docs.reservation.ReservationControllerDocs;
 import com.example.restapi.domain.dto.reservation.CreateReservationDto;
 import com.example.restapi.domain.enums.ReservationStatus;
 import com.example.restapi.domain.model.Reservation;
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/reservation")
-public class ReservationController {
+public class ReservationController implements ReservationControllerDocs {
 
     private final CreateReservationService createReservationService;
     private final FindReservationByIdService findReservationByIdService;
@@ -21,33 +22,29 @@ public class ReservationController {
     private final CompleteReservationService completeReservationService;
     private final CancelReservationService cancelReservationService;
 
-    @PostMapping
-    public Reservation create(@Valid @RequestBody CreateReservationDto createReservationDto) {
+    @Override
+    public Reservation create(CreateReservationDto createReservationDto) {
         return createReservationService.create(createReservationDto);
     }
 
-    @GetMapping("/{id}")
-    public Reservation findById(@PathVariable("id") long id) {
+    @Override
+    public Reservation findById(long id) {
         return findReservationByIdService.findById(id);
     }
 
-    @GetMapping
-    public List<Reservation> findAll(
-            @RequestParam(required = false) Long id,
-            @RequestParam(name = "client_id", required = false) Long clientId,
-            @RequestParam(name = "property_id", required = false) Long propertyId,
-            @RequestParam(name = "status", required = false) ReservationStatus status
+    @Override
+    public List<Reservation> findAll(Long id, Long clientId, Long propertyId, ReservationStatus status
     ) {
         return findAllReservationService.findAll(clientId, propertyId, status);
     }
 
-    @PatchMapping(path = "/cancel/{id}")
-    public void cancel(@PathVariable(value = "id", required = true) long id) {
+    @Override
+    public void cancel(long id) {
         cancelReservationService.cancel(id);
     }
 
-    @PatchMapping(path = "/complete/{id}")
-    public void complete(@PathVariable(value = "id", required = true) long id) {
+    @Override
+    public void complete(long id) {
         completeReservationService.complete(id);
     }
 }
