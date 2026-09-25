@@ -190,7 +190,15 @@ A aplicação será iniciada utilizando a configuração definida no projeto.
 
 A API possui documentação utilizando **Swagger / OpenAPI**, permitindo visualizar e testar os endpoints disponíveis diretamente pelo navegador.
 
-Após iniciar a aplicação, acesse a interface do Swagger pela URL configurada no projeto.
+Após iniciar a aplicação, a interface do Swagger estará disponível em:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+A aplicação utiliza a porta **8080** por padrão.
+
+> **Swagger UI:** `localhost:8080/swagger-ui/index.html`
 
 ---
 
