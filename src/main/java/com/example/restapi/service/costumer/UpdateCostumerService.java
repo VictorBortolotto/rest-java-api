@@ -2,6 +2,7 @@ package com.example.restapi.service.costumer;
 
 import com.example.restapi.domain.dto.costumer.UpdateRequestCostumerDto;
 import com.example.restapi.domain.exceptions.ConflictException;
+import com.example.restapi.domain.exceptions.InactivatedException;
 import com.example.restapi.domain.model.Costumer;
 import com.example.restapi.domain.repository.CostumerRepository;
 import lombok.AllArgsConstructor;
@@ -15,13 +16,17 @@ public class UpdateCostumerService {
     private final FindCostumerByIdService findCostumerByIdService;
 
     public Costumer update(long id, UpdateRequestCostumerDto updateRequestCostumerDto) {
-        boolean isCostumerAlreadyExistsByEmail = costumerRepository.findByEmailAndIdNot(updateRequestCostumerDto.email(), id).isEmpty();
+        Costumer costumer = findCostumerByIdService.findById(id);
 
-        if (!isCostumerAlreadyExistsByEmail) {
-            throw new ConflictException("Costumer already exists with email.");
+        if (!costumer.isActive()) {
+            throw new InactivatedException("Inactivated costumer");
         }
 
-        Costumer costumer = findCostumerByIdService.findById(id);
+        boolean isCostumerAlreadyExistsByEmail = costumerRepository.findByEmailAndIdNot(updateRequestCostumerDto.email(), id).isPresent();
+
+        if (isCostumerAlreadyExistsByEmail) {
+            throw new ConflictException("Costumer already exists with email.");
+        }
 
         costumer.setPhone(updateRequestCostumerDto.phone());
         costumer.setName(updateRequestCostumerDto.name());

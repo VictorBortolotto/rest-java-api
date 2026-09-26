@@ -20,7 +20,7 @@ public interface CostumerRepository extends JpaRepository<Costumer, Long> {
     """)
     List<Costumer> findAll(@Param("active") Boolean active);
 
-    Optional<?> findByDocument(@Param("document") String document);
-    Optional<?> findByEmail(@Param("email") String email);
-    Optional<?> findByEmailAndIdNot(@Param("email") String email, @Param("id") long id);
+    Optional<Costumer> findByDocument(@Param("document") String document);
+    Optional<Costumer> findByEmail(@Param("email") String email);
+    Optional<Costumer> findByEmailAndIdNot(@Param("email") String email, @Param("id") long id);
 }

@@ -36,7 +36,7 @@ D:\GitHub\restapi\src\main\java\com\example\restapi\RestapiApplication.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\costumer\CreateCostumerService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\costumer\FindAllCostumerService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\costumer\FindCostumerByIdService.java
-D:\GitHub\restapi\src\main\java\com\example\restapi\service\costumer\InactiveteCostumerService.java
+D:\GitHub\restapi\src\main\java\com\example\restapi\service\costumer\InactivateCostumerService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\costumer\UpdateCostumerService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\landLord\CreateLandLordService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\landLord\FindAllLandLordService.java

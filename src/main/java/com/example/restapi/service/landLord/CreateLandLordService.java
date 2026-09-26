@@ -15,10 +15,10 @@ public class CreateLandLordService {
     private LandLordRepository landLordRepository;
 
     public LandLord create(CreateRequestLandLordDto createRequestLandLordDto) {
-        boolean isLandLordAlreadyExistsByDocument = landLordRepository.findByDocument(createRequestLandLordDto.document()).isEmpty();
-        boolean isLandLordAlreadyExistsByEmail = landLordRepository.findByEmail(createRequestLandLordDto.email()).isEmpty();
+        boolean isLandLordAlreadyExistsByDocument = landLordRepository.findByDocument(createRequestLandLordDto.document()).isPresent();
+        boolean isLandLordAlreadyExistsByEmail = landLordRepository.findByEmail(createRequestLandLordDto.email()).isPresent();
 
-        if (!isLandLordAlreadyExistsByDocument || !isLandLordAlreadyExistsByEmail) {
+        if (isLandLordAlreadyExistsByDocument || isLandLordAlreadyExistsByEmail) {
             throw new ConflictException("Land Lord already exists with email or document.");
         }
 

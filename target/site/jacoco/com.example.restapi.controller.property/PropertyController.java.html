@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PropertyController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">com.example.restapi.controller.property</a> &gt; <span class="el_source">PropertyController.java</span></div><h1>PropertyController.java</h1><pre class="source lang-java linenums">package com.example.restapi.controller.property;
+
+import com.example.restapi.controller.docs.property.PropertyControllerDocs;
+import com.example.restapi.domain.dto.property.RegistryPropertyDto;
+import com.example.restapi.domain.dto.property.UpdatePropertyDto;
+import com.example.restapi.domain.model.Property;
+import com.example.restapi.service.property.*;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping(path = &quot;/property&quot;)
+public class PropertyController implements PropertyControllerDocs {
+
+    private final RegistryPropertyService registryPropertyService;
+    private final FindAllPropertyService findAllPropertyService;
+    private final FindPropertyByIdService findPropertyByIdService;
+    private final InactivatePropertyService inactivatePropertyService;
+    private final UpdatePropertyService updatePropertyService;
+
+    @Override
+    public Property registry(RegistryPropertyDto registryPropertyDto) {
+<span class="fc" id="L27">        return registryPropertyService.registry(registryPropertyDto);</span>
+    }
+
+    @Override
+    public List&lt;Property&gt; findAll(Long id,  Long landLordId, Boolean isAvaliable, Boolean isActive
+    ) {
+<span class="fc" id="L33">        return findAllPropertyService.findAll(id, landLordId, isAvaliable, isActive);</span>
+    }
+
+    @Override
+    public Property findById(long id) {
+<span class="fc" id="L38">        return findPropertyByIdService.findById(id);</span>
+    }
+
+    @Override
+    public void inactivate(long id) {
+<span class="fc" id="L43">        inactivatePropertyService.inactivate(id);</span>
+<span class="fc" id="L44">    }</span>
+
+    @Override
+    public Property update(long id, UpdatePropertyDto updatePropertyDto) {
+<span class="fc" id="L48">        return updatePropertyService.update(id, updatePropertyDto);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

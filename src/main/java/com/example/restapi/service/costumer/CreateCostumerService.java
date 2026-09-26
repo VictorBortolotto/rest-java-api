@@ -14,10 +14,10 @@ public class CreateCostumerService {
     private final CostumerRepository costumerRepository;
 
     public Costumer create(CreateRequestCostumerDto createRequestCostumerDto) {
-        boolean isLandLordAlreadyExistsByDocument = costumerRepository.findByDocument(createRequestCostumerDto.document()).isEmpty();
-        boolean isLandLordAlreadyExistsByEmail = costumerRepository.findByEmail(createRequestCostumerDto.email()).isEmpty();
+        boolean documentExists = costumerRepository.findByDocument(createRequestCostumerDto.document()).isPresent();
+        boolean emailExists = costumerRepository.findByEmail(createRequestCostumerDto.email()).isPresent();
 
-        if (!isLandLordAlreadyExistsByDocument || !isLandLordAlreadyExistsByEmail) {
+        if (documentExists || emailExists) {
             throw new ConflictException("Costumer already exists with email or document.");
         }
 

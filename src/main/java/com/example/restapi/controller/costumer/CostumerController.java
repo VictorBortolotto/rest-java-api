@@ -5,7 +5,6 @@ import com.example.restapi.domain.dto.costumer.CreateRequestCostumerDto;
 import com.example.restapi.domain.dto.costumer.UpdateRequestCostumerDto;
 import com.example.restapi.domain.model.Costumer;
 import com.example.restapi.service.costumer.*;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +19,7 @@ public class CostumerController implements CostumerControllerDocs {
     private final FindAllCostumerService findAllCostumerService;
     private final FindCostumerByIdService findCostumerByIdService;
     private final UpdateCostumerService updateCostumerService;
-    private final InactiveteCostumerService inactiveteCostumerService;
+    private final InactivateCostumerService inactivateCostumerService;
 
     @Override
     public Costumer create(CreateRequestCostumerDto createRequestCostumerDto) {
@@ -44,6 +43,6 @@ public class CostumerController implements CostumerControllerDocs {
 
     @Override
     public void inactivate(long id) {
-        inactiveteCostumerService.inactivate(id);
+        inactivateCostumerService.inactivate(id);
     }
 }

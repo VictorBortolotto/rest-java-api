@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface LandLordRepository extends JpaRepository<LandLord, Long> {
 
-    Optional<?> findByDocument(@Param("document") String document);
-    Optional<?> findByEmail(@Param("email") String email);
-    Optional<?> findByEmailAndIdNot(@Param("email") String email, @Param("id") long id);
+    Optional<LandLord> findByDocument(@Param("document") String document);
+    Optional<LandLord> findByEmail(@Param("email") String email);
+    Optional<LandLord> findByEmailAndIdNot(@Param("email") String email, @Param("id") long id);
 }

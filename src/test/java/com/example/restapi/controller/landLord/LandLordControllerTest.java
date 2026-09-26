@@ -1,0 +1,141 @@
+package com.example.restapi.controller.landLord;
+
+import com.example.restapi.domain.dto.landLord.CreateRequestLandLordDto;
+import com.example.restapi.domain.dto.landLord.UpdateRequestLandLordDto;
+import com.example.restapi.domain.model.LandLord;
+import com.example.restapi.mock.dto.landLord.CreateRequestLandLordDtoMock;
+import com.example.restapi.mock.dto.landLord.UpdateRequestLandLordDtoMock;
+import com.example.restapi.service.landLord.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class LandLordControllerTest {
+
+    @Mock
+    private CreateLandLordService createLandLordService;
+
+    @Mock
+    private FindAllLandLordService findAllLandLordService;
+
+    @Mock
+    private FindLandLordByIdService findLandLordByIdService;
+
+    @Mock
+    private UpdateLandLordService updateLandLordService;
+
+    @Mock
+    private InactivateLandLordService inactivateLandLordService;
+
+    @InjectMocks
+    private LandLordController landLordController;
+
+
+    @Test
+    void shouldCreateLandLord() {
+
+        CreateRequestLandLordDto dto = CreateRequestLandLordDtoMock.createRequestLandLordDtoMock();
+
+        LandLord landLord = new LandLord();
+
+        when(createLandLordService.create(dto))
+                .thenReturn(landLord);
+
+        LandLord result =
+                landLordController.create(dto);
+
+        assertNotNull(result);
+        assertEquals(landLord, result);
+
+        verify(createLandLordService)
+                .create(dto);
+    }
+
+
+    @Test
+    void shouldFindAllLandLords() {
+
+        LandLord landLord1 = new LandLord();
+        LandLord landLord2 = new LandLord();
+
+        List<LandLord> landLords =
+                List.of(landLord1, landLord2);
+
+        when(findAllLandLordService.findAll())
+                .thenReturn(landLords);
+
+        List<LandLord> result =
+                landLordController.findAll();
+
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        assertEquals(landLords, result);
+
+        verify(findAllLandLordService)
+                .findAll();
+    }
+
+
+    @Test
+    void shouldFindLandLordById() {
+
+        long id = 1L;
+
+        LandLord landLord = new LandLord();
+
+        when(findLandLordByIdService.findById(id))
+                .thenReturn(landLord);
+
+        LandLord result =
+                landLordController.findById(id);
+
+        assertNotNull(result);
+        assertEquals(landLord, result);
+
+        verify(findLandLordByIdService)
+                .findById(id);
+    }
+
+
+    @Test
+    void shouldUpdateLandLord() {
+
+        long id = 1L;
+
+        UpdateRequestLandLordDto dto = UpdateRequestLandLordDtoMock.updateRequestLandLordDtoMock();
+
+        LandLord landLord = new LandLord();
+
+        when(updateLandLordService.update(id, dto))
+                .thenReturn(landLord);
+
+        LandLord result =
+                landLordController.update(id, dto);
+
+        assertNotNull(result);
+        assertEquals(landLord, result);
+
+        verify(updateLandLordService)
+                .update(id, dto);
+    }
+
+
+    @Test
+    void shouldInactivateLandLord() {
+
+        long id = 1L;
+
+        landLordController.inactivate(id);
+
+        verify(inactivateLandLordService)
+                .inactivate(id);
+    }
+}

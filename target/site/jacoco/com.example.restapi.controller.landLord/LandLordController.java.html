@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LandLordController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">com.example.restapi.controller.landLord</a> &gt; <span class="el_source">LandLordController.java</span></div><h1>LandLordController.java</h1><pre class="source lang-java linenums">package com.example.restapi.controller.landLord;
+
+import com.example.restapi.controller.docs.landLord.LandLordControllerDocs;
+import com.example.restapi.domain.dto.landLord.CreateRequestLandLordDto;
+import com.example.restapi.domain.dto.landLord.UpdateRequestLandLordDto;
+import com.example.restapi.domain.model.LandLord;
+import com.example.restapi.service.landLord.*;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping(path = &quot;/landlord&quot;)
+public class LandLordController implements LandLordControllerDocs {
+
+    private final CreateLandLordService createLandLordService;
+    private final FindAllLandLordService findAllLandLordService;
+    private final FindLandLordByIdService findLandLordByIdService;
+    private final UpdateLandLordService updateLandLordService;
+    private final InactivateLandLordService inactivateLandLordService;
+
+    @Override
+    public LandLord create(CreateRequestLandLordDto createRequestLandLordDto) {
+<span class="fc" id="L27">        return createLandLordService.create(createRequestLandLordDto);</span>
+    }
+
+    @Override
+    public List&lt;LandLord&gt; findAll() {
+<span class="fc" id="L32">        return findAllLandLordService.findAll();</span>
+    }
+
+    @Override
+    public LandLord findById(long id) {
+<span class="fc" id="L37">        return findLandLordByIdService.findById(id);</span>
+    }
+
+    @Override
+    public LandLord update(long id, UpdateRequestLandLordDto updateRequestLandLordDto) {
+<span class="fc" id="L42">        return updateLandLordService.update(id, updateRequestLandLordDto);</span>
+    }
+
+    @Override
+    public void inactivate(long id) {
+<span class="fc" id="L47">        inactivateLandLordService.inactivate(id);</span>
+<span class="fc" id="L48">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
