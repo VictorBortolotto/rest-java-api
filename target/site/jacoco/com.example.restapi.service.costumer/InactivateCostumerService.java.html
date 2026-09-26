@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InactivateCostumerService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">com.example.restapi.service.costumer</a> &gt; <span class="el_source">InactivateCostumerService.java</span></div><h1>InactivateCostumerService.java</h1><pre class="source lang-java linenums">package com.example.restapi.service.costumer;
+
+import com.example.restapi.domain.exceptions.ConflictException;
+import com.example.restapi.domain.model.Costumer;
+import com.example.restapi.domain.repository.CostumerRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class InactivateCostumerService {
+
+    private final CostumerRepository costumerRepository;
+    private final FindCostumerByIdService findCostumerByIdService;
+
+    public void inactivate(long id) {
+<span class="fc" id="L17">        Costumer costumer = findCostumerByIdService.findById(id);</span>
+
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (!costumer.isActive()) {</span>
+<span class="fc" id="L20">            throw new ConflictException(&quot;Costumer are already inactivated&quot;);</span>
+        }
+
+<span class="fc" id="L23">        costumer.setActive(false);</span>
+
+<span class="fc" id="L25">        costumerRepository.save(costumer);</span>
+<span class="fc" id="L26">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

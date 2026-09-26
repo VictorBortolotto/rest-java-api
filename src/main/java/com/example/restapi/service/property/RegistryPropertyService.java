@@ -46,6 +46,7 @@ public class RegistryPropertyService {
         property.setZipCode(registryPropertyDto.zipCode());
         property.setCapacity(registryPropertyDto.capacity());
         property.setDailyRate(registryPropertyDto.dailyRate());
+        property.setNotes(registryPropertyDto.notes());
         property.setActive(true);
         property.setAvaliable(true);
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateCostumerService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">com.example.restapi.service.costumer</a> &gt; <span class="el_source">CreateCostumerService.java</span></div><h1>CreateCostumerService.java</h1><pre class="source lang-java linenums">package com.example.restapi.service.costumer;
+
+import com.example.restapi.domain.dto.costumer.CreateRequestCostumerDto;
+import com.example.restapi.domain.exceptions.ConflictException;
+import com.example.restapi.domain.model.Costumer;
+import com.example.restapi.domain.repository.CostumerRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class CreateCostumerService {
+
+    private final CostumerRepository costumerRepository;
+
+    public Costumer create(CreateRequestCostumerDto createRequestCostumerDto) {
+<span class="fc" id="L17">        boolean documentExists = costumerRepository.findByDocument(createRequestCostumerDto.document()).isPresent();</span>
+<span class="fc" id="L18">        boolean emailExists = costumerRepository.findByEmail(createRequestCostumerDto.email()).isPresent();</span>
+
+<span class="fc bfc" id="L20" title="All 4 branches covered.">        if (documentExists || emailExists) {</span>
+<span class="fc" id="L21">            throw new ConflictException(&quot;Costumer already exists with email or document.&quot;);</span>
+        }
+
+<span class="fc" id="L24">        Costumer costumer = new Costumer();</span>
+
+<span class="fc" id="L26">        costumer.setEmail(createRequestCostumerDto.email());</span>
+<span class="fc" id="L27">        costumer.setDocument(createRequestCostumerDto.document());</span>
+<span class="fc" id="L28">        costumer.setName(createRequestCostumerDto.name());</span>
+<span class="fc" id="L29">        costumer.setPhone(createRequestCostumerDto.phone());</span>
+<span class="fc" id="L30">        costumer.setActive(true);</span>
+
+<span class="fc" id="L32">        return costumerRepository.save(costumer);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

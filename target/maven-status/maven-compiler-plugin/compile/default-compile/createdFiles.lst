@@ -50,6 +50,6 @@ com\example\restapi\domain\exceptions\InactivatedException.class
 com\example\restapi\domain\enums\PropertyType.class
 com\example\restapi\service\landLord\UpdateLandLordService.class
 com\example\restapi\controller\docs\costumer\CostumerControllerDocs.class
+com\example\restapi\service\costumer\InactivateCostumerService.class
 com\example\restapi\domain\dto\property\RegistryPropertyDto.class
-com\example\restapi\service\costumer\InactiveteCostumerService.class
 com\example\restapi\service\property\FindAllPropertyService.class

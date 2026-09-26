@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InactivateLandLordService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">com.example.restapi.service.landLord</a> &gt; <span class="el_source">InactivateLandLordService.java</span></div><h1>InactivateLandLordService.java</h1><pre class="source lang-java linenums">package com.example.restapi.service.landLord;
+
+import com.example.restapi.domain.exceptions.ConflictException;
+import com.example.restapi.domain.model.LandLord;
+import com.example.restapi.domain.model.Property;
+import com.example.restapi.domain.repository.LandLordRepository;
+import com.example.restapi.domain.repository.PropertyRepository;
+import com.example.restapi.service.property.FindAllPropertyService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+@AllArgsConstructor
+public class InactivateLandLordService {
+
+    private final LandLordRepository landLordRepository;
+    private final PropertyRepository propertyRepository;
+    private final FindLandLordByIdService findLandLordByIdService;
+    private final FindAllPropertyService findAllPropertyService;
+
+    public void inactivate(long id) {
+<span class="fc" id="L25">        LandLord landLord = findLandLordByIdService.findById(id);</span>
+
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (!landLord.isActive()) {</span>
+<span class="fc" id="L28">            throw new ConflictException(&quot;Landlord are already inactivated&quot;);</span>
+        }
+
+<span class="fc" id="L31">        inactivateAllActivePropertiesByLandLordId(landLord.getId());</span>
+
+<span class="fc" id="L33">        landLord.setActive(false);</span>
+
+<span class="fc" id="L35">        landLordRepository.save(landLord);</span>
+<span class="fc" id="L36">    }</span>
+
+    private void inactivateAllActivePropertiesByLandLordId(long idLandLord) {
+<span class="fc" id="L39">        List&lt;Property&gt; properties = findAllPropertyService.findAll(null, idLandLord, null, true);</span>
+
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (properties.isEmpty()) {</span>
+<span class="fc" id="L42">            return;</span>
+        }
+
+<span class="fc" id="L45">        List&lt;Property&gt; unactivatedProperties = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (Property property : properties) {</span>
+<span class="fc" id="L48">            property.setActive(false);</span>
+<span class="fc" id="L49">            unactivatedProperties.add(property);</span>
+<span class="fc" id="L50">        }</span>
+
+<span class="fc" id="L52">        propertyRepository.saveAll(unactivatedProperties);</span>
+<span class="fc" id="L53">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

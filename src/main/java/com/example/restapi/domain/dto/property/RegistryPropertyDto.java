@@ -60,7 +60,7 @@ public record RegistryPropertyDto(
         @JsonProperty("daily_rate")
         @Schema(description = "Property daily rate", example = "4.90")
         @NotNull(message = "Daily rate cannot be null.")
-        int dailyRate,
+        double dailyRate,
 
         @JsonProperty
         @Schema(description = "Property notes", example = "Windows with tinted glass")

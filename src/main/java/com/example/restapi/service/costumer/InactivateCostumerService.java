@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class InactiveteCostumerService {
+public class InactivateCostumerService {
 
     private final CostumerRepository costumerRepository;
     private final FindCostumerByIdService findCostumerByIdService;
