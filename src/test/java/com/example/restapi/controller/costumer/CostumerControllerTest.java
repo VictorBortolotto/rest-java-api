@@ -5,6 +5,7 @@ import com.example.restapi.domain.dto.costumer.UpdateRequestCostumerDto;
 import com.example.restapi.domain.model.Costumer;
 import com.example.restapi.mock.dto.costumer.CreateCostumerDtoMock;
 import com.example.restapi.mock.dto.costumer.UpdateCostumerDtoMock;
+import com.example.restapi.mock.entity.CostumerMock;
 import com.example.restapi.service.costumer.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,7 +45,7 @@ class CostumerControllerTest {
 
         CreateRequestCostumerDto dto = CreateCostumerDtoMock.createRequestCostumerDtoMock();
 
-        Costumer costumer = new Costumer();
+        Costumer costumer = CostumerMock.costumerMock();
 
         when(createCostumerService.create(dto))
                 .thenReturn(costumer);
@@ -62,8 +63,14 @@ class CostumerControllerTest {
     @Test
     void shouldFindAllCostumers() {
 
-        Costumer costumer1 = new Costumer();
+        Costumer costumer1 = CostumerMock.costumerMock();
         Costumer costumer2 = new Costumer();
+        costumer2.setId(2L);
+        costumer2.setName("Wendell");
+        costumer2.setEmail("wendell@gmail.com");
+        costumer2.setActive(true);
+        costumer2.setPhone("+(55) 48 99936-1999");
+        costumer2.setDocument("123.456.749-34");
 
         List<Costumer> costumers =
                 List.of(costumer1, costumer2);
@@ -87,7 +94,7 @@ class CostumerControllerTest {
     void shouldFindAllCostumersWithoutActiveFilter() {
 
         List<Costumer> costumers =
-                List.of(new Costumer());
+                List.of(CostumerMock.costumerMock());
 
         when(findAllCostumerService.findAll(null))
                 .thenReturn(costumers);
@@ -108,7 +115,7 @@ class CostumerControllerTest {
 
         long id = 1L;
 
-        Costumer costumer = new Costumer();
+        Costumer costumer = CostumerMock.costumerMock();
 
         when(findCostumerByIdService.findById(id))
                 .thenReturn(costumer);
@@ -131,7 +138,7 @@ class CostumerControllerTest {
 
         UpdateRequestCostumerDto dto = UpdateCostumerDtoMock.updateRequestCostumerDtoMock();
 
-        Costumer costumer = new Costumer();
+        Costumer costumer = CostumerMock.costumerMock();
 
         when(updateCostumerService.update(id, dto))
                 .thenReturn(costumer);

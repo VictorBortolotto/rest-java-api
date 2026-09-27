@@ -22,33 +22,37 @@ public class UpdatePropertyService {
     public Property update(long id, UpdatePropertyDto updatePropertyDto) {
 <span class="fc" id="L23">        Property property = findPropertyByIdService.findById(id);</span>
 
-<span class="fc" id="L25">        LandLord landLord = findLandLordByIdService.findById(property.getLandLord().getId());</span>
-
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (!landLord.isActive()) {</span>
-<span class="fc" id="L28">            throw new InactivatedException(&quot;Inactive Landlord.&quot;);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (!property.isActive()) {</span>
+<span class="fc" id="L26">            throw new InactivatedException(&quot;Inactive property.&quot;);</span>
         }
 
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (updatePropertyDto.capacity() &lt;= 0) {</span>
-<span class="fc" id="L32">            throw new InsufficentValueExcpetion(&quot;Capacity must be greater than zero.&quot;);</span>
+<span class="fc" id="L29">        LandLord landLord = findLandLordByIdService.findById(property.getLandLord().getId());</span>
+
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (!landLord.isActive()) {</span>
+<span class="fc" id="L32">            throw new InactivatedException(&quot;Inactive Landlord.&quot;);</span>
         }
 
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (updatePropertyDto.dailyRate() &lt;= 0) {</span>
-<span class="fc" id="L36">            throw new InsufficentValueExcpetion(&quot;Daily rate must be greater than zero.&quot;);</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (updatePropertyDto.capacity() &lt;= 0) {</span>
+<span class="fc" id="L36">            throw new InsufficentValueExcpetion(&quot;Capacity must be greater than zero.&quot;);</span>
         }
 
-<span class="fc" id="L39">        property.setName(updatePropertyDto.name());</span>
-<span class="fc" id="L40">        property.setPropertyType(PropertyType.valueOf(updatePropertyDto.propertyType().toUpperCase()));</span>
-<span class="fc" id="L41">        property.setAddress(updatePropertyDto.address());</span>
-<span class="fc" id="L42">        property.setNumber(updatePropertyDto.number());</span>
-<span class="fc" id="L43">        property.setNeighborhood(updatePropertyDto.neighborhood());</span>
-<span class="fc" id="L44">        property.setCity(updatePropertyDto.city());</span>
-<span class="fc" id="L45">        property.setState(updatePropertyDto.state());</span>
-<span class="fc" id="L46">        property.setZipCode(updatePropertyDto.zipCode());</span>
-<span class="fc" id="L47">        property.setCapacity(updatePropertyDto.capacity());</span>
-<span class="fc" id="L48">        property.setDailyRate(updatePropertyDto.dailyRate());</span>
-<span class="fc" id="L49">        property.setNotes(updatePropertyDto.notes());</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (updatePropertyDto.dailyRate() &lt;= 0) {</span>
+<span class="fc" id="L40">            throw new InsufficentValueExcpetion(&quot;Daily rate must be greater than zero.&quot;);</span>
+        }
 
-<span class="fc" id="L51">        return propertyRepository.save(property);</span>
+<span class="fc" id="L43">        property.setName(updatePropertyDto.name());</span>
+<span class="fc" id="L44">        property.setPropertyType(PropertyType.valueOf(updatePropertyDto.propertyType().toUpperCase()));</span>
+<span class="fc" id="L45">        property.setAddress(updatePropertyDto.address());</span>
+<span class="fc" id="L46">        property.setNumber(updatePropertyDto.number());</span>
+<span class="fc" id="L47">        property.setNeighborhood(updatePropertyDto.neighborhood());</span>
+<span class="fc" id="L48">        property.setCity(updatePropertyDto.city());</span>
+<span class="fc" id="L49">        property.setState(updatePropertyDto.state());</span>
+<span class="fc" id="L50">        property.setZipCode(updatePropertyDto.zipCode());</span>
+<span class="fc" id="L51">        property.setCapacity(updatePropertyDto.capacity());</span>
+<span class="fc" id="L52">        property.setDailyRate(updatePropertyDto.dailyRate());</span>
+<span class="fc" id="L53">        property.setNotes(updatePropertyDto.notes());</span>
+
+<span class="fc" id="L55">        return propertyRepository.save(property);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

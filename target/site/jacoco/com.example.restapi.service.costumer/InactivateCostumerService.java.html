@@ -2,27 +2,47 @@
 
 import com.example.restapi.domain.exceptions.ConflictException;
 import com.example.restapi.domain.model.Costumer;
+import com.example.restapi.domain.model.Reservation;
 import com.example.restapi.domain.repository.CostumerRepository;
+import com.example.restapi.domain.repository.ReservationRepository;
+import com.example.restapi.service.reservation.CancelAllReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class InactivateCostumerService {
 
     private final CostumerRepository costumerRepository;
+    private final ReservationRepository reservationRepository;
+    private final CancelAllReservationService cancelAllReservationService;
     private final FindCostumerByIdService findCostumerByIdService;
 
     public void inactivate(long id) {
-<span class="fc" id="L17">        Costumer costumer = findCostumerByIdService.findById(id);</span>
+<span class="fc" id="L25">        Costumer costumer = findCostumerByIdService.findById(id);</span>
 
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (!costumer.isActive()) {</span>
-<span class="fc" id="L20">            throw new ConflictException(&quot;Costumer are already inactivated&quot;);</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (!costumer.isActive()) {</span>
+<span class="fc" id="L28">            throw new ConflictException(&quot;Costumer are already inactivated&quot;);</span>
         }
 
-<span class="fc" id="L23">        costumer.setActive(false);</span>
+<span class="fc" id="L31">        List&lt;Reservation&gt; ongoingReservations = reservationRepository.findOngoingReservations(null, id, null, LocalDate.now());</span>
+<span class="fc" id="L32">        validateNoOngoingReservation(ongoingReservations);</span>
 
-<span class="fc" id="L25">        costumerRepository.save(costumer);</span>
-<span class="fc" id="L26">    }</span>
+<span class="fc" id="L34">        costumer.setActive(false);</span>
+
+<span class="fc" id="L36">        costumerRepository.save(costumer);</span>
+<span class="fc" id="L37">        cancelAllReservationService.cancelAll(null, id, null);</span>
+<span class="fc" id="L38">    }</span>
+
+    private void validateNoOngoingReservation(List&lt;Reservation&gt; reservations) {
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!reservations.isEmpty()) {</span>
+<span class="fc" id="L42">            throw new ConflictException(</span>
+                    &quot;There are ongoing reservations; it is not possible to deactivate the costumer.&quot;
+            );
+        }
+<span class="fc" id="L46">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

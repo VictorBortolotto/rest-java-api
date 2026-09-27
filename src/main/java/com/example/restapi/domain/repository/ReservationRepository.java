@@ -29,6 +29,39 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("""
         SELECT r
           FROM Reservation r
+         WHERE (:landLordId IS NULL OR r.property.landLord.id = :landLordId)
+           AND (:costumerId IS NULL OR r.costumer.id = :costumerId)
+           AND (:propertyId IS NULL OR r.property.id = :propertyId)
+           AND r.status = 'ACTIVE'
+           AND r.checkInDate <= :date
+           AND r.checkOutDate > :date
+    """)
+    List<Reservation> findOngoingReservations(
+            @Param("landLordId") Long landLordId,
+            @Param("costumerId") Long costumerId,
+            @Param("propertyId") Long propertyId,
+            @Param("date") LocalDate date
+    );
+
+    @Query("""
+        SELECT r
+          FROM Reservation r
+         WHERE (:landLordId IS NULL OR r.property.landLord.id = :landLordId)
+           AND (:costumerId IS NULL OR r.costumer.id = :costumerId)
+           AND (:propertyId IS NULL OR r.property.id = :propertyId)
+           AND r.status = 'ACTIVE'
+           AND r.checkInDate > :date
+    """)
+    List<Reservation> findUpcomingReservations(
+            @Param("landLordId") Long landLordId,
+            @Param("costumerId") Long costumerId,
+            @Param("propertyId") Long propertyId,
+            @Param("date") LocalDate date
+    );
+
+    @Query("""
+        SELECT r
+          FROM Reservation r
          WHERE (:idClient IS NULL OR r.costumer.id = :idClient)
            AND (:idProperty IS NULL OR r.property.id = :idProperty)
            AND (:status IS NULL OR r.status = :status)

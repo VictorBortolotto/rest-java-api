@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,7 +66,7 @@ class ReservationControllerTest {
 
         long id = 1L;
 
-        Reservation reservation = new Reservation();
+        Reservation reservation = ReservationMock.reservationMock();
 
         when(findReservationByIdService.findById(id))
                 .thenReturn(reservation);
@@ -91,8 +92,11 @@ class ReservationControllerTest {
         ReservationStatus status =
                 ReservationStatus.COMPLETED;
 
-        Reservation reservation1 = new Reservation();
-        Reservation reservation2 = new Reservation();
+        Reservation reservation1 = ReservationMock.reservationMock();
+        Reservation reservation2 = ReservationMock.reservationMock();
+        reservation2.setId(2L);
+        reservation2.setCheckInDate(LocalDate.of(2026,10,1));
+        reservation2.setCheckOutDate(LocalDate.of(2026,10,20));
 
         List<Reservation> reservations =
                 List.of(
@@ -108,7 +112,6 @@ class ReservationControllerTest {
 
         List<Reservation> result =
                 reservationController.findAll(
-                        id,
                         clientId,
                         propertyId,
                         status
@@ -134,18 +137,17 @@ class ReservationControllerTest {
                 null,
                 null,
                 null
-        )).thenReturn(List.of());
+        )).thenReturn(List.of(ReservationMock.reservationMock()));
 
         List<Reservation> result =
                 reservationController.findAll(
-                        null,
                         null,
                         null,
                         null
                 );
 
         assertNotNull(result);
-        assertTrue(result.isEmpty());
+        assertFalse(result.isEmpty());
 
         verify(findAllReservationService)
                 .findAll(

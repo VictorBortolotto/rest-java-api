@@ -417,6 +417,23 @@ public interface PropertyControllerDocs {
                             )
 
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "410",
+                    description = "Inactive property.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Property.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Inactive property.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
             )
     })
     @PutMapping(path = "/{id}")
@@ -461,6 +478,23 @@ public interface PropertyControllerDocs {
                                     value = """
                                 {
                                     "message": "Property not found.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "There are ongoing reservations; it is not possible to deactivate the property.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Property.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "There are ongoing reservations; it is not possible to deactivate the property.",
                                     "errors": null
                                 }
                                 """

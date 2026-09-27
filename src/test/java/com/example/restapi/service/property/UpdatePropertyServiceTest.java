@@ -3,6 +3,7 @@ package com.example.restapi.service.property;
 import com.example.restapi.domain.dto.landLord.UpdateRequestLandLordDto;
 import com.example.restapi.domain.dto.property.RegistryPropertyDto;
 import com.example.restapi.domain.dto.property.UpdatePropertyDto;
+import com.example.restapi.domain.exceptions.ConflictException;
 import com.example.restapi.domain.exceptions.InactivatedException;
 import com.example.restapi.domain.exceptions.InsufficentValueExcpetion;
 import com.example.restapi.domain.model.LandLord;
@@ -154,6 +155,22 @@ public class UpdatePropertyServiceTest {
 
         assertThrows(
                 InsufficentValueExcpetion.class,
+                () -> updatePropertyService.update(1L, dto)
+        );
+    }
+
+    @Test
+    void shouldThrowConflictExceptionWhenPropertyAreInactive() {
+
+        UpdatePropertyDto dto = UpdatePropertyDtoMock.updatePropertyDto();
+        Property property = PropertyMock.propertyMock();
+        property.setActive(false);
+
+        when(findPropertyByIdService.findById(any(Long.class)))
+                .thenReturn(property);
+
+        assertThrows(
+                InactivatedException.class,
                 () -> updatePropertyService.update(1L, dto)
         );
     }

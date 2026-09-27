@@ -19,7 +19,7 @@ public class UpdateLandLordService {
 <span class="fc" id="L19">        LandLord landLord = findLandLordByIdService.findById(id);</span>
 
 <span class="fc bfc" id="L21" title="All 2 branches covered.">        if (!landLord.isActive()) {</span>
-<span class="fc" id="L22">            throw new InactivatedException(&quot;Inactivated land lord&quot;);</span>
+<span class="fc" id="L22">            throw new InactivatedException(&quot;Inactive land lord.&quot;);</span>
         }
 
 <span class="fc" id="L25">        boolean isLandLordAlreadyExistsByEmail = landLordRepository.findByEmailAndIdNot(updateRequestLandLordDto.email(), id).isEmpty();</span>

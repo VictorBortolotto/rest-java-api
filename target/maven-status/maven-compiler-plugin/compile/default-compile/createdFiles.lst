@@ -1,6 +1,7 @@
 com\example\restapi\domain\exceptions\ApiException.class
 com\example\restapi\service\costumer\FindCostumerByIdService.class
 com\example\restapi\domain\dto\reservation\CreateReservationDto.class
+com\example\restapi\service\reservation\CancelAllReservationService.class
 com\example\restapi\domain\dto\costumer\CreateRequestCostumerDto.class
 com\example\restapi\domain\enums\ReservationStatus.class
 com\example\restapi\domain\model\Property.class

@@ -267,7 +267,6 @@ public interface ReservationControllerDocs {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<Reservation> findAll(
-            @RequestParam(required = false) Long id,
             @RequestParam(name = "client_id", required = false) Long clientId,
             @RequestParam(name = "property_id", required = false) Long propertyId,
             @RequestParam(name = "status", required = false) ReservationStatus status
@@ -388,6 +387,23 @@ public interface ReservationControllerDocs {
                                     value = """
                                 {
                                     "message": "Reserve not found.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "The reservation is currently ongoing and cannot be canceled.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Reservation.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "The reservation is currently ongoing and cannot be canceled.",
                                     "errors": null
                                 }
                                 """

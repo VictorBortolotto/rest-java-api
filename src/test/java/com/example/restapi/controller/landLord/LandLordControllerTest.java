@@ -2,9 +2,11 @@ package com.example.restapi.controller.landLord;
 
 import com.example.restapi.domain.dto.landLord.CreateRequestLandLordDto;
 import com.example.restapi.domain.dto.landLord.UpdateRequestLandLordDto;
+import com.example.restapi.domain.enums.LandLordType;
 import com.example.restapi.domain.model.LandLord;
 import com.example.restapi.mock.dto.landLord.CreateRequestLandLordDtoMock;
 import com.example.restapi.mock.dto.landLord.UpdateRequestLandLordDtoMock;
+import com.example.restapi.mock.entity.LandLordMock;
 import com.example.restapi.service.landLord.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,7 +46,7 @@ class LandLordControllerTest {
 
         CreateRequestLandLordDto dto = CreateRequestLandLordDtoMock.createRequestLandLordDtoMock();
 
-        LandLord landLord = new LandLord();
+        LandLord landLord = LandLordMock.landLordMock();
 
         when(createLandLordService.create(dto))
                 .thenReturn(landLord);
@@ -63,8 +65,15 @@ class LandLordControllerTest {
     @Test
     void shouldFindAllLandLords() {
 
-        LandLord landLord1 = new LandLord();
+        LandLord landLord1 = LandLordMock.landLordMock();
         LandLord landLord2 = new LandLord();
+        landLord2.setId(2L);
+        landLord2.setLandLordType(LandLordType.HOTEL);
+        landLord2.setName("Wendell");
+        landLord2.setPhone("+(55) 48 99999-9699");
+        landLord2.setEmail("wendell@gmail.com");
+        landLord2.setDocument("123.456.745-38");
+        landLord2.setActive(true);
 
         List<LandLord> landLords =
                 List.of(landLord1, landLord2);
@@ -89,7 +98,7 @@ class LandLordControllerTest {
 
         long id = 1L;
 
-        LandLord landLord = new LandLord();
+        LandLord landLord = LandLordMock.landLordMock();
 
         when(findLandLordByIdService.findById(id))
                 .thenReturn(landLord);
@@ -112,7 +121,7 @@ class LandLordControllerTest {
 
         UpdateRequestLandLordDto dto = UpdateRequestLandLordDtoMock.updateRequestLandLordDtoMock();
 
-        LandLord landLord = new LandLord();
+        LandLord landLord = LandLordMock.landLordMock();
 
         when(updateLandLordService.update(id, dto))
                 .thenReturn(landLord);
