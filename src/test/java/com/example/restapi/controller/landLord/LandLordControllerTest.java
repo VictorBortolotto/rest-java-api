@@ -37,6 +37,9 @@ class LandLordControllerTest {
     @Mock
     private InactivateLandLordService inactivateLandLordService;
 
+    @Mock
+    private ReactivateLandLordService reactivateLandLordService;
+
     @InjectMocks
     private LandLordController landLordController;
 
@@ -146,5 +149,20 @@ class LandLordControllerTest {
 
         verify(inactivateLandLordService)
                 .inactivate(id);
+    }
+
+    @Test
+    void shouldReactivateLandLord() {
+
+        long id = 1L;
+
+        doNothing()
+                .when(reactivateLandLordService)
+                .reactivate(id);
+
+        landLordController.reactivate(id);
+
+        verify(reactivateLandLordService)
+                .reactivate(id);
     }
 }

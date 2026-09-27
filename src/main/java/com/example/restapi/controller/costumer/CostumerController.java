@@ -19,6 +19,7 @@ public class CostumerController implements CostumerControllerDocs {
     private final FindAllCostumerService findAllCostumerService;
     private final FindCostumerByIdService findCostumerByIdService;
     private final UpdateCostumerService updateCostumerService;
+    private final ReactivateCostumerService reactivateCostumerService;
     private final InactivateCostumerService inactivateCostumerService;
 
     @Override
@@ -44,5 +45,10 @@ public class CostumerController implements CostumerControllerDocs {
     @Override
     public void inactivate(long id) {
         inactivateCostumerService.inactivate(id);
+    }
+
+    @Override
+    public void reactivate(long id) {
+        reactivateCostumerService.reactivate(id);
     }
 }

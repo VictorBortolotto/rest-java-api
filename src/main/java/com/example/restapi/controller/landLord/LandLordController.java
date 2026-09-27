@@ -5,9 +5,9 @@ import com.example.restapi.domain.dto.landLord.CreateRequestLandLordDto;
 import com.example.restapi.domain.dto.landLord.UpdateRequestLandLordDto;
 import com.example.restapi.domain.model.LandLord;
 import com.example.restapi.service.landLord.*;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ public class LandLordController implements LandLordControllerDocs {
     private final FindAllLandLordService findAllLandLordService;
     private final FindLandLordByIdService findLandLordByIdService;
     private final UpdateLandLordService updateLandLordService;
+    private final ReactivateLandLordService reactivateLandLordService;
     private final InactivateLandLordService inactivateLandLordService;
 
     @Override
@@ -46,5 +47,8 @@ public class LandLordController implements LandLordControllerDocs {
     public void inactivate(long id) {
         inactivateLandLordService.inactivate(id);
     }
+
+    @Override
+    public void reactivate(long id) {reactivateLandLordService.reactivate(id);}
 
 }

@@ -20,6 +20,7 @@ public class PropertyController implements PropertyControllerDocs {
     private final FindAllPropertyService findAllPropertyService;
     private final FindPropertyByIdService findPropertyByIdService;
     private final InactivatePropertyService inactivatePropertyService;
+    private final ReactivatePropertyService reactivatePropertyService;
     private final UpdatePropertyService updatePropertyService;
 
     @Override
@@ -41,6 +42,11 @@ public class PropertyController implements PropertyControllerDocs {
     @Override
     public void inactivate(long id) {
         inactivatePropertyService.inactivate(id);
+    }
+
+    @Override
+    public void reactivate(long id) {
+        reactivatePropertyService.reactivate(id);
     }
 
     @Override

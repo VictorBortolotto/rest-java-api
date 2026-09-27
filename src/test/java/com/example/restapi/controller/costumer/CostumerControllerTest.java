@@ -34,6 +34,9 @@ class CostumerControllerTest {
     private UpdateCostumerService updateCostumerService;
 
     @Mock
+    private ReactivateCostumerService reactivateCostumerService;
+
+    @Mock
     private InactivateCostumerService inactivateCostumerService;
 
     @InjectMocks
@@ -167,5 +170,20 @@ class CostumerControllerTest {
 
         verify(inactivateCostumerService)
                 .inactivate(id);
+    }
+
+    @Test
+    void shouldReactivateCostumer() {
+
+        long id = 1L;
+
+        doNothing()
+                .when(reactivateCostumerService)
+                .reactivate(id);
+
+        costumerController.reactivate(id);
+
+        verify(reactivateCostumerService)
+                .reactivate(id);
     }
 }
