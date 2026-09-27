@@ -1,7 +1,7 @@
-D:\GitHub\restapi\src\test\java\com\example\restapi\controller\CostumerControllerTest.java
-D:\GitHub\restapi\src\test\java\com\example\restapi\controller\LandLordControllerTest.java
-D:\GitHub\restapi\src\test\java\com\example\restapi\controller\PropertyControllerTest.java
-D:\GitHub\restapi\src\test\java\com\example\restapi\controller\ReservationControllerTest.java
+D:\GitHub\restapi\src\test\java\com\example\restapi\controller\costumer\CostumerControllerTest.java
+D:\GitHub\restapi\src\test\java\com\example\restapi\controller\landLord\LandLordControllerTest.java
+D:\GitHub\restapi\src\test\java\com\example\restapi\controller\property\PropertyControllerTest.java
+D:\GitHub\restapi\src\test\java\com\example\restapi\controller\reservation\ReservationControllerTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\exception\GlobalExceptionHandlerTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\mock\dto\costumer\CreateCostumerDtoMock.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\mock\dto\costumer\UpdateCostumerDtoMock.java
@@ -30,6 +30,7 @@ D:\GitHub\restapi\src\test\java\com\example\restapi\service\property\FindPropert
 D:\GitHub\restapi\src\test\java\com\example\restapi\service\property\InactivatePropertyServiceTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\service\property\RegistryPropertyServiceTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\service\property\UpdatePropertyServiceTest.java
+D:\GitHub\restapi\src\test\java\com\example\restapi\service\reservation\CancelAllReservationServiceTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\service\reservation\CancelReservationServiceTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\service\reservation\CompleteReservationServiceTest.java
 D:\GitHub\restapi\src\test\java\com\example\restapi\service\reservation\CreateReservationServiceTest.java

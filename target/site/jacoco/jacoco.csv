@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 ,com.example.restapi.service.costumer,FindCostumerByIdService,0,14,0,0,0,1,0,2,0,2
 ,com.example.restapi.service.costumer,FindAllCostumerService,0,15,0,2,0,4,0,2,0,1
 ,com.example.restapi.service.costumer,UpdateCostumerService,0,46,0,4,0,10,0,3,0,1
-,com.example.restapi.service.costumer,InactivateCostumerService,0,22,0,2,0,6,0,2,0,1
+,com.example.restapi.service.costumer,InactivateCostumerService,0,50,0,4,0,12,0,4,0,2
 ,com.example.restapi.service.costumer,CreateCostumerService,0,52,0,4,0,11,0,3,0,1
 ,com.example.restapi.domain.dto.costumer,UpdateRequestCostumerDto,0,12,0,0,0,1,0,1,0,1
 ,com.example.restapi.domain.dto.costumer,CreateRequestCostumerDto,0,15,0,0,0,1,0,1,0,1
@@ -16,7 +16,8 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 ,com.example.restapi.config,OpenApiConfig,3,0,0,0,1,0,1,0,1,0
 ,com.example.restapi.service.reservation,FindReservationByIdService,0,14,0,0,0,1,0,2,0,2
 ,com.example.restapi.service.reservation,CreateReservationService,0,130,0,12,0,28,0,8,0,2
-,com.example.restapi.service.reservation,CancelReservationService,0,29,0,4,0,6,0,3,0,1
+,com.example.restapi.service.reservation,CancelAllReservationService,0,40,0,4,0,9,0,3,0,1
+,com.example.restapi.service.reservation,CancelReservationService,0,50,1,7,0,11,1,5,0,2
 ,com.example.restapi.service.reservation,CompleteReservationService,0,24,0,2,0,6,0,2,0,1
 ,com.example.restapi.service.reservation,FindAllReservationService,0,17,0,2,0,4,0,2,0,1
 ,com.example.restapi.controller.reservation,ReservationController,0,27,0,0,0,7,0,5,0,5
@@ -24,10 +25,10 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 ,com.example.restapi.domain.enums,PropertyType,0,33,0,0,0,6,0,1,0,1
 ,com.example.restapi.domain.enums,LandLordType,0,15,0,0,0,3,0,1,0,1
 ,com.example.restapi.exception,GlobalExceptionHandler,0,45,0,0,0,16,0,4,0,4
-,com.example.restapi.service.property,InactivatePropertyService,0,22,0,2,0,6,0,2,0,1
+,com.example.restapi.service.property,InactivatePropertyService,0,50,0,4,0,12,0,4,0,2
 ,com.example.restapi.service.property,FindAllPropertyService,0,26,0,4,0,5,0,3,0,1
 ,com.example.restapi.service.property,FindPropertyByIdService,0,14,0,0,0,1,0,2,0,2
-,com.example.restapi.service.property,UpdatePropertyService,0,90,0,6,0,20,0,4,0,1
+,com.example.restapi.service.property,UpdatePropertyService,0,98,0,8,0,22,0,5,0,1
 ,com.example.restapi.service.property,RegistryPropertyService,0,97,0,6,0,23,0,4,0,1
 ,com.example.restapi.domain.dto.landLord,CreateRequestLandLordDto,0,18,0,0,0,1,0,1,0,1
 ,com.example.restapi.domain.dto.landLord,UpdateRequestLandLordDto,0,12,0,0,0,1,0,1,0,1
@@ -35,7 +36,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 ,com.example.restapi.service.landLord,FindLandLordByIdService,0,14,0,0,0,1,0,2,0,2
 ,com.example.restapi.service.landLord,FindAllLandLordService,0,14,0,2,0,4,0,2,0,1
 ,com.example.restapi.service.landLord,UpdateLandLordService,0,49,0,4,0,11,0,3,0,1
-,com.example.restapi.service.landLord,InactivateLandLordService,0,68,0,6,0,17,0,5,0,2
+,com.example.restapi.service.landLord,InactivateLandLordService,0,96,0,8,0,23,0,7,0,3
 ,com.example.restapi.domain.dto.property,UpdatePropertyDto,0,36,0,0,0,1,0,1,0,1
 ,com.example.restapi.domain.dto.property,RegistryPropertyDto,0,39,0,0,0,1,0,1,0,1
 ,com.example.restapi.controller.landLord,LandLordController,0,25,0,0,0,6,0,5,0,5

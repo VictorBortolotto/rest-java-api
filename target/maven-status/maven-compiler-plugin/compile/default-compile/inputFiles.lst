@@ -48,6 +48,7 @@ D:\GitHub\restapi\src\main\java\com\example\restapi\service\property\FindPropert
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\property\InactivatePropertyService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\property\RegistryPropertyService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\property\UpdatePropertyService.java
+D:\GitHub\restapi\src\main\java\com\example\restapi\service\reservation\CancelAllReservationService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\reservation\CancelReservationService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\reservation\CompleteReservationService.java
 D:\GitHub\restapi\src\main\java\com\example\restapi\service\reservation\CreateReservationService.java

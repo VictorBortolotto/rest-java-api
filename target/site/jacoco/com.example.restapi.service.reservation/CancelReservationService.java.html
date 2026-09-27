@@ -5,7 +5,12 @@ import com.example.restapi.domain.exceptions.ConflictException;
 import com.example.restapi.domain.model.Reservation;
 import com.example.restapi.domain.repository.ReservationRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -15,16 +20,27 @@ public class CancelReservationService {
     private final FindReservationByIdService findReservationByIdService;
 
     public void cancel(long id) {
-<span class="fc" id="L18">        Reservation reservation = findReservationByIdService.findById(id);</span>
+<span class="fc" id="L23">        Reservation reservation = findReservationByIdService.findById(id);</span>
 
-<span class="fc bfc" id="L20" title="All 4 branches covered.">        if (ReservationStatus.CANCELLED.equals(reservation.getStatus()) || ReservationStatus.COMPLETED.equals(reservation.getStatus())) {</span>
-<span class="fc" id="L21">            throw new ConflictException(&quot;The reservation has already been cancelled or finalized.&quot;);</span>
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (ReservationStatus.CANCELLED.equals(reservation.getStatus()) || ReservationStatus.COMPLETED.equals(reservation.getStatus())) {</span>
+<span class="fc" id="L26">            throw new ConflictException(&quot;The reservation has already been cancelled or finalized.&quot;);</span>
         }
 
-<span class="fc" id="L24">        reservation.setStatus(ReservationStatus.CANCELLED);</span>
+<span class="fc" id="L29">        validateNoOngoingReservation(reservation);</span>
 
-<span class="fc" id="L26">        reservationRepository.save(reservation);</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L31">        reservation.setStatus(ReservationStatus.CANCELLED);</span>
+
+<span class="fc" id="L33">        reservationRepository.save(reservation);</span>
+<span class="fc" id="L34">    }</span>
+
+    private void validateNoOngoingReservation(Reservation reservation) {
+<span class="fc" id="L37">        LocalDate today = LocalDate.now();</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        if (reservation.getCheckInDate().isBefore(today) &amp;&amp; reservation.getCheckOutDate().isAfter(today)) {</span>
+<span class="fc" id="L39">            throw new ConflictException(</span>
+                    &quot;The reservation is currently ongoing and cannot be canceled.&quot;
+            );
+        }
+<span class="fc" id="L43">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

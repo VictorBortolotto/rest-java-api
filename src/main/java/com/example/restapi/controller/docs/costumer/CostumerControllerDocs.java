@@ -228,6 +228,23 @@ public interface CostumerControllerDocs {
                             )
 
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "410",
+                    description = "Inactive costumer.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Costumer.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Inactive costumer.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
             )
     })
     @PutMapping(path = "/{id}")
@@ -274,7 +291,24 @@ public interface CostumerControllerDocs {
                             )
 
                     )
-            )
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "There are ongoing reservations; it is not possible to deactivate the costumer.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Costumer.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "There are ongoing reservations; it is not possible to deactivate the costumer.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
     })
     @PatchMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

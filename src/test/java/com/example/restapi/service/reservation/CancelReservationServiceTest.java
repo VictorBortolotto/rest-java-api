@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -62,6 +64,23 @@ public class CancelReservationServiceTest {
     void shouldThrowConflictExceptionWhenReservationIsAlreadyCompleted() {
         Reservation reservation = ReservationMock.reservationMock();
         reservation.setStatus(ReservationStatus.COMPLETED);
+
+        when(findReservationByIdService.findById(any(Long.class)))
+                .thenReturn(reservation);
+
+        assertThrows(
+                ConflictException.class,
+                () -> cancelReservationService.cancel(1L)
+        );
+    }
+
+    @Test
+    void shouldThrowConflictExceptionWhenOngoingReservation() {
+        Reservation reservation = ReservationMock.reservationMock();
+        reservation.setCheckInDate(LocalDate.of(1900, 1, 1));
+        reservation.setCheckOutDate(LocalDate.of(2900, 1, 1));
+
+        reservation.setStatus(ReservationStatus.ACTIVE);
 
         when(findReservationByIdService.findById(any(Long.class)))
                 .thenReturn(reservation);

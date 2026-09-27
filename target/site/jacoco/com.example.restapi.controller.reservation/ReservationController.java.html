@@ -33,7 +33,7 @@ public class ReservationController implements ReservationControllerDocs {
     }
 
     @Override
-    public List&lt;Reservation&gt; findAll(Long id, Long clientId, Long propertyId, ReservationStatus status
+    public List&lt;Reservation&gt; findAll(Long clientId, Long propertyId, ReservationStatus status
     ) {
 <span class="fc" id="L38">        return findAllReservationService.findAll(clientId, propertyId, status);</span>
     }

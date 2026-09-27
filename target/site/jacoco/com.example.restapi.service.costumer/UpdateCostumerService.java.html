@@ -19,7 +19,7 @@ public class UpdateCostumerService {
 <span class="fc" id="L19">        Costumer costumer = findCostumerByIdService.findById(id);</span>
 
 <span class="fc bfc" id="L21" title="All 2 branches covered.">        if (!costumer.isActive()) {</span>
-<span class="fc" id="L22">            throw new InactivatedException(&quot;Inactivated costumer&quot;);</span>
+<span class="fc" id="L22">            throw new InactivatedException(&quot;Inactive costumer.&quot;);</span>
         }
 
 <span class="fc" id="L25">        boolean isCostumerAlreadyExistsByEmail = costumerRepository.findByEmailAndIdNot(updateRequestCostumerDto.email(), id).isPresent();</span>

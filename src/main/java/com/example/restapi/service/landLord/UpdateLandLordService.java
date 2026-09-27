@@ -19,7 +19,7 @@ public class UpdateLandLordService {
         LandLord landLord = findLandLordByIdService.findById(id);
 
         if (!landLord.isActive()) {
-            throw new InactivatedException("Inactivated land lord");
+            throw new InactivatedException("Inactive land lord.");
         }
 
         boolean isLandLordAlreadyExistsByEmail = landLordRepository.findByEmailAndIdNot(updateRequestLandLordDto.email(), id).isEmpty();

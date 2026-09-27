@@ -5,6 +5,7 @@ import com.example.restapi.domain.dto.property.UpdatePropertyDto;
 import com.example.restapi.domain.model.Property;
 import com.example.restapi.mock.dto.property.RegistryPropertyDtoMock;
 import com.example.restapi.mock.dto.property.UpdatePropertyDtoMock;
+import com.example.restapi.mock.entity.PropertyMock;
 import com.example.restapi.service.property.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,7 +45,7 @@ class PropertyControllerTest {
 
         RegistryPropertyDto dto = RegistryPropertyDtoMock.registryPropertyDto();
 
-        Property property = new Property();
+        Property property = PropertyMock.propertyMock();
 
         when(registryPropertyService.registry(dto))
                 .thenReturn(property);
@@ -68,8 +69,9 @@ class PropertyControllerTest {
         Boolean isAvaliable = true;
         Boolean isActive = true;
 
-        Property property1 = new Property();
-        Property property2 = new Property();
+        Property property1 = PropertyMock.propertyMock();
+        Property property2 = PropertyMock.propertyMock();
+        property2.setId(2L);
 
         List<Property> properties =
                 List.of(property1, property2);
@@ -111,7 +113,7 @@ class PropertyControllerTest {
                 null,
                 null,
                 null
-        )).thenReturn(List.of());
+        )).thenReturn(List.of(PropertyMock.propertyMock()));
 
         List<Property> result =
                 propertyController.findAll(
@@ -122,7 +124,7 @@ class PropertyControllerTest {
                 );
 
         assertNotNull(result);
-        assertTrue(result.isEmpty());
+        assertFalse(result.isEmpty());
 
         verify(findAllPropertyService)
                 .findAll(
@@ -139,7 +141,7 @@ class PropertyControllerTest {
 
         long id = 1L;
 
-        Property property = new Property();
+        Property property = PropertyMock.propertyMock();
 
         when(findPropertyByIdService.findById(id))
                 .thenReturn(property);

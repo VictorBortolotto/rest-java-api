@@ -22,6 +22,10 @@ public class UpdatePropertyService {
     public Property update(long id, UpdatePropertyDto updatePropertyDto) {
         Property property = findPropertyByIdService.findById(id);
 
+        if (!property.isActive()) {
+            throw new InactivatedException("Inactive property.");
+        }
+
         LandLord landLord = findLandLordByIdService.findById(property.getLandLord().getId());
 
         if (!landLord.isActive()) {

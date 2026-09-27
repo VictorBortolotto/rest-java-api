@@ -3,12 +3,16 @@
 import com.example.restapi.domain.exceptions.ConflictException;
 import com.example.restapi.domain.model.LandLord;
 import com.example.restapi.domain.model.Property;
+import com.example.restapi.domain.model.Reservation;
 import com.example.restapi.domain.repository.LandLordRepository;
 import com.example.restapi.domain.repository.PropertyRepository;
+import com.example.restapi.domain.repository.ReservationRepository;
 import com.example.restapi.service.property.FindAllPropertyService;
+import com.example.restapi.service.reservation.CancelAllReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,39 +22,51 @@ public class InactivateLandLordService {
 
     private final LandLordRepository landLordRepository;
     private final PropertyRepository propertyRepository;
+    private final ReservationRepository reservationRepository;
+    private final CancelAllReservationService cancelAllReservationService;
     private final FindLandLordByIdService findLandLordByIdService;
     private final FindAllPropertyService findAllPropertyService;
 
     public void inactivate(long id) {
-<span class="fc" id="L25">        LandLord landLord = findLandLordByIdService.findById(id);</span>
+<span class="fc" id="L31">        LandLord landLord = findLandLordByIdService.findById(id);</span>
 
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (!landLord.isActive()) {</span>
-<span class="fc" id="L28">            throw new ConflictException(&quot;Landlord are already inactivated&quot;);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (!landLord.isActive()) {</span>
+<span class="fc" id="L34">            throw new ConflictException(&quot;Landlord are already inactivated&quot;);</span>
         }
 
-<span class="fc" id="L31">        inactivateAllActivePropertiesByLandLordId(landLord.getId());</span>
+<span class="fc" id="L37">        List&lt;Reservation&gt; reservations = reservationRepository.findOngoingReservations(id, null, null, LocalDate.now());</span>
+<span class="fc" id="L38">        validateNoOngoingReservation(reservations);</span>
 
-<span class="fc" id="L33">        landLord.setActive(false);</span>
+<span class="fc" id="L40">        landLord.setActive(false);</span>
 
-<span class="fc" id="L35">        landLordRepository.save(landLord);</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L42">        landLordRepository.save(landLord);</span>
+<span class="fc" id="L43">        inactivateAllActivePropertiesByLandLordId(landLord.getId());</span>
+<span class="fc" id="L44">        cancelAllReservationService.cancelAll(id, null, null);</span>
+<span class="fc" id="L45">    }</span>
 
     private void inactivateAllActivePropertiesByLandLordId(long idLandLord) {
-<span class="fc" id="L39">        List&lt;Property&gt; properties = findAllPropertyService.findAll(null, idLandLord, null, true);</span>
+<span class="fc" id="L48">        List&lt;Property&gt; properties = findAllPropertyService.findAll(null, idLandLord, null, true);</span>
 
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (properties.isEmpty()) {</span>
-<span class="fc" id="L42">            return;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (properties.isEmpty()) {</span>
+<span class="fc" id="L51">            return;</span>
         }
 
-<span class="fc" id="L45">        List&lt;Property&gt; unactivatedProperties = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L54">        List&lt;Property&gt; unactivatedProperties = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (Property property : properties) {</span>
-<span class="fc" id="L48">            property.setActive(false);</span>
-<span class="fc" id="L49">            unactivatedProperties.add(property);</span>
-<span class="fc" id="L50">        }</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (Property property : properties) {</span>
+<span class="fc" id="L57">            property.setActive(false);</span>
+<span class="fc" id="L58">            unactivatedProperties.add(property);</span>
+<span class="fc" id="L59">        }</span>
 
-<span class="fc" id="L52">        propertyRepository.saveAll(unactivatedProperties);</span>
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L61">        propertyRepository.saveAll(unactivatedProperties);</span>
+<span class="fc" id="L62">    }</span>
 
+    private void validateNoOngoingReservation(List&lt;Reservation&gt; reservations) {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (!reservations.isEmpty()) {</span>
+<span class="fc" id="L66">            throw new ConflictException(</span>
+                    &quot;There are ongoing reservations; it is not possible to deactivate the renter.&quot;
+            );
+        }
+<span class="fc" id="L70">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
