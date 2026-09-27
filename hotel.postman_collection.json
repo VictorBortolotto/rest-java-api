@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"teste2@teste.com\",\r\n    \"name\": \"Teste\",\r\n    \"document\": \"123455673\",\r\n    \"phone\": \"123456\"\r\n}",
+              "raw": "{\r\n    \"email\": \"teste@teste.com\",\r\n    \"name\": \"Teste\",\r\n    \"document\": \"1234556839\",\r\n    \"phone\": \"123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -43,7 +43,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/costumer?is_active=true",
+              "raw": "http://localhost:8080/costumer",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -51,12 +51,6 @@
               "port": "8080",
               "path": [
                 "costumer"
-              ],
-              "query": [
-                {
-                  "key": "is_active",
-                  "value": "true"
-                }
               ]
             }
           },
@@ -68,7 +62,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/costumer/2",
+              "raw": "http://localhost:8080/costumer/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -76,7 +70,7 @@
               "port": "8080",
               "path": [
                 "costumer",
-                "2"
+                "1"
               ]
             }
           },
@@ -89,7 +83,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"teste@teste.com\",\r\n    \"name\": \"Teste 1\",\r\n    \"phone\": \"123456\"\r\n}",
+              "raw": "{\r\n    \"email\": \"teste@teste.com\",\r\n    \"name\": \"Teste\",\r\n    \"phone\": \"123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -97,7 +91,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/costumer/2",
+              "raw": "http://localhost:8080/costumer/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -105,7 +99,7 @@
               "port": "8080",
               "path": [
                 "costumer",
-                "2"
+                "1"
               ]
             }
           },
@@ -117,7 +111,7 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/costumer/1",
+              "raw": "http://localhost:8080/costumer/inactivate/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -125,6 +119,28 @@
               "port": "8080",
               "path": [
                 "costumer",
+                "inactivate",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reactivate_costumer",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/costumer/reactivate/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "costumer",
+                "reactivate",
                 "1"
               ]
             }
@@ -218,7 +234,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/landlord/2",
+              "raw": "http://localhost:8080/landlord/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -226,7 +242,7 @@
               "port": "8080",
               "path": [
                 "landlord",
-                "2"
+                "1"
               ]
             }
           },
@@ -238,7 +254,7 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/landlord/2",
+              "raw": "http://localhost:8080/landlord/inactivate1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -246,7 +262,27 @@
               "port": "8080",
               "path": [
                 "landlord",
-                "2"
+                "inactivate1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reactivate_land_lord",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/landlord/reactivate1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "landlord",
+                "reactivate1"
               ]
             }
           },
@@ -291,7 +327,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/property?is_active=true",
+              "raw": "http://localhost:8080/property",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -299,12 +335,6 @@
               "port": "8080",
               "path": [
                 "property"
-              ],
-              "query": [
-                {
-                  "key": "is_active",
-                  "value": "true"
-                }
               ]
             }
           },
@@ -337,7 +367,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Teste 2\",\r\n    \"property_type\": \"room\",\r\n    \"address\": \"Teste 123\",\r\n    \"number\": \"123\",\r\n    \"neighborhood\": \"Teste Bairro\",\r\n    \"city\": \"Teste\",\r\n    \"state\": \"Teste\",\r\n    \"zip_code\": \"Teste\",\r\n    \"capacity\": 3,\r\n    \"daily_rate\": 32.00,\r\n    \"notes\": \"Teste\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Teste\",\r\n    \"property_type\": \"room\",\r\n    \"address\": \"Teste 123\",\r\n    \"number\": \"123\",\r\n    \"neighborhood\": \"Teste Bairro\",\r\n    \"city\": \"Teste\",\r\n    \"state\": \"Teste\",\r\n    \"zip_code\": \"Teste\",\r\n    \"capacity\": 3,\r\n    \"daily_rate\": 32.00,\r\n    \"notes\": \"Teste\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -345,7 +375,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/property/2",
+              "raw": "http://localhost:8080/property/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -353,7 +383,7 @@
               "port": "8080",
               "path": [
                 "property",
-                "2"
+                "1"
               ]
             }
           },
@@ -365,7 +395,7 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/property/5",
+              "raw": "http://localhost:8080/property/inactivate/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -373,7 +403,29 @@
               "port": "8080",
               "path": [
                 "property",
-                "5"
+                "inactivate",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reactivate_property",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/property/reactivate/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "property",
+                "reactivate",
+                "1"
               ]
             }
           },
@@ -391,7 +443,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"costumer_id\": 1,\r\n    \"property_id\": 1,\r\n    \"check_in_date\": \"2026-10-11\",\r\n    \"check_out_date\": \"2026-10-20\",\r\n    \"number_of_costumers\": 2\r\n}",
+              "raw": "{\r\n    \"costumer_id\": 1,\r\n    \"property_id\": 1,\r\n    \"check_in_date\": \"2026-11-20\",\r\n    \"check_out_date\": \"2026-11-25\",\r\n    \"number_of_costumers\": 2\r\n}",
               "options": {
                 "raw": {
                   "language": "json"

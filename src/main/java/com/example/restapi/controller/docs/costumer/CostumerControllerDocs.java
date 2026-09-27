@@ -310,9 +310,55 @@ public interface CostumerControllerDocs {
                     )
             ),
     })
-    @PatchMapping(path = "/{id}")
+    @PatchMapping(path = "/inactivate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void inactivate(
+            @PathVariable("id") long id
+    );
+
+    @Operation(
+            summary = "Update costumer.",
+            description = "Update costumer by ID."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Costumer are already activated.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Costumer.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Costumer are already activated.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Costumers not found.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Costumer.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Costumer not found.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            )
+    })
+    @PatchMapping(path = "/reactivate/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void reactivate(
             @PathVariable("id") long id
     );
 }

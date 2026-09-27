@@ -256,8 +256,8 @@ public interface LandLordControllerDocs {
     );
 
     @Operation(
-            summary = "Update land lord.",
-            description = "Update land lord by ID."
+            summary = "Inactivate land lord.",
+            description = "Inactivate land lord by ID."
     )
     @ApiResponses({
             @ApiResponse(
@@ -312,9 +312,72 @@ public interface LandLordControllerDocs {
                     )
             )
     })
-    @PatchMapping(path = "/{id}")
+    @PatchMapping(path = "/inactivate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void inactivate(
+            @PathVariable("id") long id
+    );
+
+    @Operation(
+            summary = "Reactivate land lord.",
+            description = "Reactivate land lord by ID."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Land lord are already inactivated.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LandLord.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Land lord are already inactivated.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Land lord not found.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LandLord.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Land lord not found.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "There are ongoing reservations; it is not possible to deactivate the renter.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LandLord.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "There are ongoing reservations; it is not possible to deactivate the renter.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            )
+    })
+    @PatchMapping(path = "/reactivate/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void reactivate(
             @PathVariable("id") long id
     );
 }

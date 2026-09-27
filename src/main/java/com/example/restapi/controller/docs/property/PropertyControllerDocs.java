@@ -503,9 +503,76 @@ public interface PropertyControllerDocs {
                     )
             )
     })
-    @PatchMapping(path = "/{id}")
+    @PatchMapping(path = "/inactivate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void inactivate(
+            @PathVariable("id") long id
+    );
+
+    @Operation(
+            summary = "Reactivate property.",
+            description = "Reactivate property by ID."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Property reactivated successfully."
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Property are already activated.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Property.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Property are already activated.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Property not found.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Property.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Property not found.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "410",
+                    description = "Inactive land lord.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Property.class),
+                            examples = @ExampleObject(
+                                    value = """
+                                {
+                                    "message": "Inactive land lord.",
+                                    "errors": null
+                                }
+                                """
+                            )
+
+                    )
+            )
+    })
+    @PatchMapping(path = "/reactivate/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void reactivate(
             @PathVariable("id") long id
     );
 }

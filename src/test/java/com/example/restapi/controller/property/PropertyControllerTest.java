@@ -34,6 +34,9 @@ class PropertyControllerTest {
     private InactivatePropertyService inactivatePropertyService;
 
     @Mock
+    private ReactivatePropertyService reactivatePropertyService;
+
+    @Mock
     private UpdatePropertyService updatePropertyService;
 
     @InjectMocks
@@ -166,6 +169,21 @@ class PropertyControllerTest {
 
         verify(inactivatePropertyService)
                 .inactivate(id);
+    }
+
+    @Test
+    void shouldReactivateProperty() {
+
+        long id = 1L;
+
+        doNothing()
+                .when(reactivatePropertyService)
+                .reactivate(id);
+
+        propertyController.reactivate(id);
+
+        verify(reactivatePropertyService)
+                .reactivate(id);
     }
 
 
